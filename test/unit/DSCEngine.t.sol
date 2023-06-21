@@ -5,7 +5,7 @@ import {Test} from "forge-std/Test.sol";
 import {DeployDSC} from "../../script/DeployDSC.s.sol";
 import {DecentralizedStableCoin} from "../../src/DecentralizedStableCoin.sol";
 import {DSCEngine} from "../../src/DSCEngine.sol";
-import {HelperConfig} from "../../script/HelperConfig.sol";
+import {HelperConfig} from "../../script/HelperConfig.s.sol";
 
 contract DSCEngineTest is Test {
     DeployDSC deployer;
@@ -17,7 +17,7 @@ contract DSCEngineTest is Test {
     function setUp() public {
         deployer = new DeployDSC();
         (dsc, engine, config) = deployer.run();
-        (ethUsdPriceFeed, weth,,) = config.activeNetworkConfig();
+        (ethUsdPriceFeed,,weth,,) = config.activeNetworkConfig();
     }
 
     function testGetUsdValue() public {
