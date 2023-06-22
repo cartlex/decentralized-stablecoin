@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 
 pragma solidity ^0.8.18;
+
 import {Script} from "forge-std/Script.sol";
 import {HelperConfig} from "./HelperConfig.s.sol";
 import {DecentralizedStableCoin} from "../src/DecentralizedStableCoin.sol";
@@ -13,13 +14,8 @@ contract DeployDSC is Script {
     function run() external returns (DecentralizedStableCoin, DSCEngine, HelperConfig) {
         HelperConfig config = new HelperConfig();
 
-        (
-            address wethUsdPriceFeed,
-            address wbtcUsdPriceFeed,
-            address weth,
-            address wbtc,
-            uint256 deployerKey
-        ) = config.activeNetworkConfig();
+        (address wethUsdPriceFeed, address wbtcUsdPriceFeed, address weth, address wbtc, uint256 deployerKey) =
+            config.activeNetworkConfig();
 
         tokenAddresses = [weth, wbtc];
         priceFeedAddresses = [wethUsdPriceFeed, wbtcUsdPriceFeed];
